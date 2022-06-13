@@ -1,0 +1,14 @@
+---
+- hosts: "{{ hostname|default('test') }}"
+  become: yes
+  vars_files:
+    - vars/default.yml
+  roles:
+    - common
+    - nginx
+    - php74
+    - composer
+    - mysql8
+    - redis
+    - certbot
+    - ufw
