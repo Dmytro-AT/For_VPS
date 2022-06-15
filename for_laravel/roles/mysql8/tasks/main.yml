@@ -1,15 +1,18 @@
 ---
 - apt_key:
+    become: true
     data: "{{ lookup('file', 'keys/mysql_pubkey.asc') }}"
     state: present
 
 - apt_repository:
+    become: true
     repo: "deb http://repo.mysql.com/apt/ubuntu {{ ansible_distribution_release }} mysql-8.0"
     state: present
     filename: /etc/apt/sources.list.d/mysql8
 
 - apt:
     name: "{{ item }}"
+    become: true
     state: latest
     update_cache: yes
   with_items:
@@ -21,6 +24,7 @@
 # MySQL Configuration
 - name: Copy .my.cnf
   template: src=my.cnf.j2 dest=/root/.my.cnf mode=0600
+  become: true
 
 - name: Sets the root password
   mysql_user:
