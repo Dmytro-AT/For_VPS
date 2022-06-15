@@ -8,8 +8,8 @@
     - nginx
     - php74
     - composer
-#    - mysql8
+    - mysql8
 #    - postgresql
-#    - redis
+    - redis
 #    - certbot
 #    - ufw
