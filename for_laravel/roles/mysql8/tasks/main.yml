@@ -5,16 +5,13 @@
     state: present
 
 - apt_repository:
-    become: true
     repo: "deb http://repo.mysql.com/apt/ubuntu {{ ansible_distribution_release }} mysql-8.0"
     state: present
     filename: /etc/apt/sources.list.d/mysql8
 
 - apt:
     name: "{{ item }}"
-    become: true
     state: latest
-    update_cache: yes
   with_items:
     - mysql-server
     - php-mysql
