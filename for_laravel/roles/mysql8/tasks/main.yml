@@ -1,6 +1,5 @@
 ---
 - apt_key:
-    become: true
     data: "{{ lookup('file', 'keys/mysql_pubkey.asc') }}"
     state: present
 
@@ -11,7 +10,9 @@
 
 - apt:
     name: "{{ item }}"
+    become: true
     state: latest
+    update_cache: yes
   with_items:
     - mysql-server
     - php-mysql
