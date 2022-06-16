@@ -7,7 +7,10 @@
     update_cache: yes
     state: latest
 
-# UFW Configuration
+- ufw:
+    rule: allow
+    name: OpenSSH
+
 - name: ufw allow ssh and nginx
   ufw:
     rule: allow
@@ -16,9 +19,7 @@
   loop:
     - "80"
     - "443"
-    - "22"
 
-- name: ufw allow ssh and nginx
-  ufw:
+- ufw:
     state: enabled
     logging: on
