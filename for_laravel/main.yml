@@ -9,7 +9,7 @@
     - php74
     - composer
 #    - mysql8
-    - postgresql
+#    - postgresql
     - redis
 #    - certbot
 #    - ufw
