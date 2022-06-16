@@ -23,9 +23,10 @@
     state: present
 
 - apt_repository:
-    repo: "deb http://apt.postgresql.org/pub/repos/apt {{ ansible_distribution_release }} main"
-    filename: /etc/apt/sources.list.d/pg_sql
+    repo: "deb http://apt.postgresql.org/pub/repos/apt {{ ansible_distribution_release }}-pgdg main"
     state: present
+    filename: /etc/apt/sources.list.d/pgdg.list
+    update_cache: no
 
 - apt:
     name: postgresql-14
