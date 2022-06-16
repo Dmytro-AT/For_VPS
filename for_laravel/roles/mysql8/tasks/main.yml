@@ -1,7 +1,11 @@
 ---
 - apt_key:
-    data: "{{ lookup('file', 'keys/mysql_pubkey.asc') }}"
-    state: present
+    keyserver: pgp.mit.edu
+    id: 3A79BD29
+
+#- apt_key:
+#    data: "{{ lookup('file', 'keys/mysql_pubkey.asc') }}"
+#    state: present
 
 - apt_repository:
     repo: "deb http://repo.mysql.com/apt/ubuntu {{ ansible_distribution_release }} mysql-8.0"
