@@ -11,5 +11,5 @@
 #    - mysql8
 #    - postgresql
     - redis
-#    - certbot
-#    - ufw
+    - certbot
+    - ufw
