@@ -38,7 +38,7 @@
 - name: Sets Up PHP Info Page
   template:
     src: "info.php.j2"
-    dest: "/var/www/html/info.php"
+    dest: "{{ ansible_env.HOME }}/www/html/info.php"
 
 - user:
     name: nginx
@@ -46,7 +46,7 @@
     append: yes
 
 - file:
-    path: /var/www/html/
+    path: "{{ ansible_env.HOME }}/www/html/"
     state: directory
     recurse: yes
     owner: www-data
