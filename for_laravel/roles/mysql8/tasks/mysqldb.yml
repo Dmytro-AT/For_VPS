@@ -16,7 +16,7 @@
 
 - name: Set some kernel parameters
   lineinfile:
-    dest: "{{ web_root }}/www/.env"
+    dest: "{{ ansible_env.HOME }}/www/.env"
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
   loop:
