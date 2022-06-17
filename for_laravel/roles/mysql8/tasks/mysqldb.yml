@@ -13,3 +13,14 @@
     login_password: "{{ mysql_root_password }}"
     state: present
   when: create_db
+
+- name: Set some kernel parameters
+  lineinfile:
+    dest: "{{ ansible_env.HOME }}/www/.env"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  loop:
+    - { regexp: '^mysql_db_name', line: 'mysql_db_name = {{ mysql_db_name }}' }
+    - { regexp: '^mysql_user', line: 'mysql_user = {{ mysql_user }}' }
+    - { regexp: '^mysql_pass', line: 'mysql_pass = {{ mysql_pass }}' }
+  when: create_db
