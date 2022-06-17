@@ -39,6 +39,7 @@
   template:
     src: "info.php.j2"
     dest: "{{ web_root }}/www/html/info.php"
+  become: no
 
 - user:
     name: nginx
