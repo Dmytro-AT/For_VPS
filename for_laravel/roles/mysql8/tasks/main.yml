@@ -3,11 +3,13 @@
     keyserver: pgp.mit.edu
     id: 3A79BD29
     state: present
+  when: install_mysql
 
 - apt_repository:
     repo: "deb http://repo.mysql.com/apt/ubuntu {{ ansible_distribution_release }} mysql-8.0"
     state: present
     filename: /etc/apt/sources.list.d/mysql8
+  when: install_mysql
 
 - apt:
     name: "{{ item }}"
@@ -18,17 +20,20 @@
     - php-mysql
     - python3-pymysql
     - python3-mysql.connector
+  when: install_mysql
 
 # MySQL Configuration
 - name: Copy .my.cnf
   template: src=my.cnf.j2 dest=/root/.my.cnf mode=0600
   become: true
+  when: install_mysql
 
 - name: Sets the root password
   mysql_user:
     name: root
     password: "{{ mysql_root_password }}"
     login_unix_socket: /var/run/mysqld/mysqld.sock
+  when: install_mysql
 
 - name: Removes all anonymous user accounts
   mysql_user:
@@ -37,6 +42,7 @@
     state: absent
     login_user: root
     login_password: "{{ mysql_root_password }}"
+  when: install_mysql
 
 - name: Removes the MySQL test database
   mysql_db:
@@ -44,6 +50,7 @@
     state: absent
     login_user: root
     login_password: "{{ mysql_root_password }}"
+  when: install_mysql
 
 - include_tasks: mysqldb.yml
-  when: create_db
+  when: create_db and install_mysql
