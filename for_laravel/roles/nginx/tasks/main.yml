@@ -35,12 +35,6 @@
     state: absent
   notify: Reload Nginx
 
-- name: Sets Up PHP Info Page
-  template:
-    src: "info.php.j2"
-    dest: "{{ web_root }}/www/html/info.php"
-  become_user: "{{ ansible_user }}"
-
 - user:
     name: nginx
     groups: www-data
