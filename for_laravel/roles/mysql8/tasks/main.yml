@@ -19,6 +19,7 @@
     - mysql-server
     - php-mysql
     - python3-pymysql
+    - python3-mysqldb
     - python3-mysql.connector
   when: install_mysql
 
