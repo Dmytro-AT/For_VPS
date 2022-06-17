@@ -1,9 +1,22 @@
 ---
 ansible_python_interpreter: "/usr/bin/python3"
 thostip: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
-mysql_root_password: "jaJj8Xueh0NZzT75"
 http_host: "test.org"
 http_conf: "test.org.conf"
 http_port: "80"
+
+#      -=  if install mysql need! =-
+install_mysql: true
+mysql_root_password: "jaJj8Xueh0NZzT75"
+#      -=  if install mysql database need! =-
+create_db: true
+mysql_db_name: "mysqldb"
+mysql_user: "mdbuser"
+mysql_pass: "mdbpass"
+
+
+#      -=  if install pgsql need! =-
+install_pgsql: false
 postgres_user: "postgres"
 postgres_pass: "jaJj8Xueh0NZzT75"
+#      -=  if install pgsql database need! =-
