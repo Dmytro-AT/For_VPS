@@ -20,6 +20,8 @@
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
     create: yes
+    become: yes
+    become_user: "{{ ansible_user }}"
   loop:
     - { regexp: '^mysql_db_name', line: 'mysql_db_name = {{ mysql_db_name }}' }
     - { regexp: '^mysql_user', line: 'mysql_user = {{ mysql_user }}' }
