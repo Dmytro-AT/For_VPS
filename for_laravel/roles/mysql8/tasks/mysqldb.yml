@@ -16,7 +16,7 @@
 
 - name: filling in env file
   lineinfile:
-    dest: "{{ destination_folder }}/env"
+    dest: "{{ ansible_env.HOME }}/env"
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
     create: yes

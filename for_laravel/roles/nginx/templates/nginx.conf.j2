@@ -1,6 +1,6 @@
 server {
         listen {{ http_port }};
-        root "{{ destination_folder }}"/www/html;
+        root {{ ansible_env.HOME }}/www/html;
         index index.php index.html index.htm index.nginx-debian.html;
         server_name {{ http_host }};
 
