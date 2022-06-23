@@ -41,7 +41,7 @@
     append: yes
 
 - file:
-    path: "{{ ansible_env.HOME }}/www/html/"
+    path: "{{ destination_folder }}/www/html/"
     state: directory
     recurse: yes
     owner: www-data

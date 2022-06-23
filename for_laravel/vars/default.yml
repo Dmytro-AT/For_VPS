@@ -4,6 +4,7 @@ thostip: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
 http_host: "test.org"
 http_conf: "test.org.conf"
 http_port: "80"
+destination_folder: lookup('env','HOME')
 #      -=  if install mysql need! =-
 install_mysql: true
 mysql_root_password: "jaJj8Xueh0NZzT75"
