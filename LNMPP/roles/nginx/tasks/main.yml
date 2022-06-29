@@ -21,8 +21,6 @@
   template:
     src: "nginx.conf.j2"
     dest: "/etc/nginx/sites-available/{{ http_conf }}"
-    become: yes
-    become_user: "{{ ansible_user }}"
   notify: Restart Nginx
 
 - file:
@@ -53,5 +51,3 @@
     recurse: yes
     owner: www-data
     group: www-data
-    become: yes
-    become_user: "{{ ansible_user }}"
