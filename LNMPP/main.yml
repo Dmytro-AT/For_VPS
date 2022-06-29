@@ -6,9 +6,7 @@
     - common
     - nginx
     - php74
-    - composer
     - mysql8
     - postgresql
-    - redis
     - certbot
     - ufw

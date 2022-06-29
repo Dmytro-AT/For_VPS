@@ -14,7 +14,6 @@ mysql_db_name: "mysqldb"
 mysql_user: "mdbuser"
 mysql_pass: "mdbpass"
 
-
 #      -=  if install pgsql need! =-
 install_pgsql: false
 postgres_user: "postgres"

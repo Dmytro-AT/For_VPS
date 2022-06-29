@@ -1,0 +1,25 @@
+---
+- name: Install nginx
+  apt:
+    pkg:
+      - ufw
+    default_release: "{{ ansible_distribution_release }}"
+    update_cache: yes
+    state: latest
+
+- ufw:
+    rule: allow
+    name: OpenSSH
+
+- name: ufw allow ssh and nginx
+  ufw:
+    rule: allow
+    port: "{{ item }}"
+    proto: tcp
+  loop:
+    - "80"
+    - "443"
+
+- ufw:
+    state: enabled
+    logging: on
