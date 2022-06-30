@@ -3,6 +3,7 @@
   lineinfile: dest=/etc/php/7.4/cli/php.ini
     regexp='date.timezone ='
     line='date.timezone = {{ php_timezone }}'
+  when: php_timezone is defined
 
 - name: disabling opcache cli
   lineinfile: dest=/etc/php/7.4/cli/php.ini

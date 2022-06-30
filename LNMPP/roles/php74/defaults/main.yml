@@ -8,7 +8,7 @@ php_packages:
   - php7.4-curl
   - php7.4-cgi
   - php7.4-fpm
-  - php7.4-mysql
+#  - php7.4-mysql
   - php7.4-gd
 #  - php7.4-mcrypt
   - php7.4-mbstring
@@ -16,13 +16,13 @@ php_packages:
   - php7.4-apcu
   - php7.4-xml
   - php7.4-json
-  - php
+  - php-fpm
   - php-cli
   - php-common
   - php-mbstring
   - php-xml
   - php-json
-php_timezone: Europe/Kiev
+#php_timezone: Europe/Kiev
 php_upload_max_filesize: "64M"
 php_post_max_size: "64M"
 php_memory_limit: "1024M"
