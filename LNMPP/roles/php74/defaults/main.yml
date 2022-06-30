@@ -22,6 +22,7 @@ php_packages:
   - php-mbstring
   - php-xml
   - php-json
+  - php
 #php_timezone: Europe/Kiev
 php_upload_max_filesize: "64M"
 php_post_max_size: "64M"
