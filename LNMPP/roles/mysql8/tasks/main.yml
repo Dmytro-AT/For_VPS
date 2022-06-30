@@ -18,6 +18,7 @@
   with_items:
     - mysql-server
     - php-mysql
+    - php7.4-mysql
     - python3-pymysql
     - python3-mysqldb
     - python3-mysql.connector
