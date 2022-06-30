@@ -38,7 +38,7 @@
 - name: Sets Up PHP Info Page
   template:
     src: "info.php.j2"
-    dest: "{{ dest_path }}/html/info.php"
+    dest: "{{ dest_path }}/www/html/info.php"
 
 - user:
     name: nginx

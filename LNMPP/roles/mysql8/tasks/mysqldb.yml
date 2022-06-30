@@ -16,7 +16,7 @@
 
 - name: filling in env file
   lineinfile:
-    dest: "{{ dest_path }}/env"
+    dest: "{{ dest_path }}/www/env"
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
     create: yes
