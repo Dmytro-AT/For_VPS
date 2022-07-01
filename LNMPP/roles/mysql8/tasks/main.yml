@@ -18,8 +18,8 @@
     install_recommends: no
   with_items:
     - mysql-server
-    - php-mysql
     - php7.4-mysql
+    - php7.4-common
     - python3-pymysql
     - python3-mysqldb
     - python3-mysql.connector
