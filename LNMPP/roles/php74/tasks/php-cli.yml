@@ -9,3 +9,18 @@
   lineinfile: dest=/etc/php/7.4/cli/php.ini
     regexp='opcache.enable_cli='
     line='opcache.enable_cli=0'
+
+- name: Set max_execution_time
+  lineinfile: dest=/etc/php/7.4/fpm/php.ini
+    regexp='max_execution_time(\s)?='
+    line='max_execution_time = {{ php_max_execution_time }}'
+  when: php_max_execution_time is defined
+  notify: restart php7-fpm
+
+- name: Set session.gc_maxlifetime
+  lineinfile: dest=/etc/php/7.4/fpm/php.ini
+    regexp='session.gc_maxlifetime(\s)?='
+    line='session.gc_maxlifetime = {{ php_session_gc_maxlifetime }}'
+  when: php_session_gc_maxlifetime is defined
+  notify: restart php7-fpm
+
