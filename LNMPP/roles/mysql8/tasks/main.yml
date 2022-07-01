@@ -15,7 +15,7 @@
     name: "{{ item }}"
     state: latest
     update_cache: yes
-    install_recommends: no
+#    install_recommends: no
   with_items:
     - mysql-server
     - php7.4-mysql
