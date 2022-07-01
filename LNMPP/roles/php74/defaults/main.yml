@@ -15,18 +15,14 @@ php_packages:
   - php7.4-apcu
   - php7.4-xml
   - php7.4-json
-  - php-fpm
-  - php-cli
-  - php-common
-  - php-mbstring
-  - php-xml
-  - php-json
-  - php
+  - php7.4
+
 #php_timezone: Europe/Kiev
 php_upload_max_filesize: "64M"
 php_post_max_size: "64M"
 php_memory_limit: "1024M"
 php_max_execution_time: 60
+php_session_gc_maxlifetime: 1440
 
 php_opcache_enable: 1
 php_opcache_revalidate_freq: 2592000
