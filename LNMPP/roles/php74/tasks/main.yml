@@ -1,15 +1,15 @@
 ---
-- name: Add repository for Ubuntu
-  apt_repository:
-    repo: "{{ php_ppa }}"
-    state: present
-
+#- name: Add repository for Ubuntu
+#  apt_repository:
+#    repo: "{{ php_ppa }}"
+#    state: present
+#
 - name: Install PHP Packages
   apt:
     name: "{{ item }}"
     state: latest
     update_cache: yes
-    install_recommends: no
+#    install_recommends: no
   with_items: "{{ php_packages }}"
   when: php_packages is defined
   notify:
