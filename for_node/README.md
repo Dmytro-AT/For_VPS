@@ -1,12 +1,9 @@
-# provisioning
-ansible linux server provisioning
+# Ansible
 Provisioning web server with:
-  - nginx
-  - mysql 8
+  - Nginx
+  - MySQL or PostgreSQL
   - php 7.4
   - redis
   - node (nodejs build code)
-  - fail2ban
   - ufw
-  - postfix (internal mail transport)
-  - composer (laravel)
+  - certbot (free certificates)
