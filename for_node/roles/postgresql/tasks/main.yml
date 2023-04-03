@@ -1,0 +1,81 @@
+---
+- name: Update apt repo and cache on Ubuntu box
+  apt:
+    update_cache: yes
+    force_apt_get: yes
+    cache_valid_time: 3600
+  when: install_pgsql
+
+- name: Upgrade all packages on servers
+  apt:
+    upgrade: dist
+    force_apt_get: yes
+  when: install_pgsql
+
+- name: Install required packages
+  apt:
+    name:
+      - wget
+      - python3-psycopg2
+      - acl
+    state: latest
+  when: install_pgsql
+
+- apt_key:
+    url: "https://www.postgresql.org/media/keys/ACCC4CF8.asc"
+    state: present
+  when: install_pgsql
+
+- apt_repository:
+    repo: "deb http://apt.postgresql.org/pub/repos/apt {{ ansible_distribution_release }}-pgdg main"
+    state: present
+    filename: /etc/apt/sources.list.d/pgdg.list
+  when: install_pgsql
+
+- apt:
+    name: postgresql-14
+    state: present
+    update_cache: yes
+  when: install_pgsql
+
+- name: Create a Superuser PostgreSQL database user
+  become: yes
+  become_user: postgres
+  postgresql_user:
+    name: '{{ postgres_user }}'
+    password: '{{ postgres_pass }}'
+    role_attr_flags: CREATEDB,SUPERUSER,CREATEROLE
+    encrypted: yes
+    state: present
+  when: install_pgsql
+
+- name: Create app database
+  become: yes
+  become_user: postgres
+  postgresql_db:
+    state: present
+    name: "{{ postgres_db_name }}"
+  when: create_pg_db and install_pgsql
+
+- name: Grant db user access to app db
+  become: yes
+  become_user: postgres
+  postgresql_privs:
+    type: database
+    database: "{{ postgres_db_name }}"
+    roles: "{{ postgres_user }}"
+    grant_option: no
+    privs: all
+  when: create_pg_db and install_pgsql
+
+- name: filling in env file
+  lineinfile:
+    dest: "{{ dest_path }}/env"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    create: yes
+  loop:
+    - { regexp: '^postgres_db_name', line: 'postgres_db_name = {{ postgres_db_name }}' }
+    - { regexp: '^postgres_user', line: 'postgres_user = {{ postgres_user }}' }
+    - { regexp: '^postgres_pass', line: 'postgres_pass = {{ postgres_pass }}' }
+  when: create_pg_db and install_pgsql

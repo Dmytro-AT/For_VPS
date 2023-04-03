@@ -1,12 +1,13 @@
 ---
 - hosts: "{{ hostname|default('test') }}"
-  become: yes
   vars_files:
     - vars/default.yml
   roles:
-    - common
-    - nginx
-    - redis
-    - certbot
-    - ufw
-    - node
+    - { role: common, become: true }
+    - { role: redis, become: true }
+    - { role: certbot, become: true }
+    - { role: ufw, become: true }
+    - { role: node, become: false }
+    - { role: postgresql, become: true }
+    - { role: nginx, become: true }
+

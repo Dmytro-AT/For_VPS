@@ -17,12 +17,12 @@ php_packages:
   - php7.4-json
   - php7.4
 
-#php_timezone: Europe/Kiev
+php_timezone: Europe/Kiev
 php_upload_max_filesize: "64M"
 php_post_max_size: "64M"
 php_memory_limit: "1024M"
-php_max_execution_time: 60
-php_session_gc_maxlifetime: 1440
+php_max_execution_time: 120
+php_session_gc_maxlifetime: 2400
 
 php_opcache_enable: 1
 php_opcache_revalidate_freq: 2592000

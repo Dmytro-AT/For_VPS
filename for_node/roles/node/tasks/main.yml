@@ -1,16 +1,38 @@
 ---
-- name: add repo key nodejs
-  apt_key:
-    url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
-    state: present
+- name: Install nvm
+  shell: "curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash"
+  args:
+    creates: "/home/{{ ansible_user_id }}/.nvm/nvm.sh"
+ 
+- shell: "source /home/{{ ansible_user_id }}/.bashrc"
+  args:
+    executable: /bin/bash
 
-- name: add nodejs repo
-  apt_repository:
-    repo: "deb https://deb.nodesource.com/node_{{ NODEJS_VERSION }}.x {{ ansible_distribution_release }} main"
-    state: present
-    update_cache: yes
+- name: Install node and set version
+  shell: "source /home/{{ ansible_user_id }}/.nvm/nvm.sh && nvm install {{ NODEJS_VERSION }} && nvm alias default {{ NODEJS_VERSION }}"
+  args:
+    executable: /bin/bash
+    creates: "/home/{{ ansible_user_id }}/.nvm/versions/node"
 
-- name: Install nodejs
-  apt:
-    name: nodejs
-    state: present
+#- shell: "sudo ln -s $NVM_DIR/versions/node/$(nvm version)/bin/node /usr/local/bin/node"
+#  args:
+#    executable: /bin/bash
+##  become: true
+
+#- shell: "sudo ln -s $NVM_DIR/versions/node/$(nvm version)/bin/pm2 /usr/local/bin/pm2"
+#  args:
+#    executable: /bin/bash
+##  become: true
+
+#- shell: "sudo ln -s $NVM_DIR/versions/node/$(nvm version)/bin/npm /usr/local/bin/npm"
+#  args:
+#    executable: /bin/bash
+##  become: true
+
+#- name: Install/Upgrade pm2 package(s)
+#  npm:
+#    name: pm2
+#    global: yes
+#    state: present
+#  become: true
+

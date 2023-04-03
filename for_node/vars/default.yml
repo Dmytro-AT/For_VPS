@@ -2,8 +2,25 @@
 ansible_python_interpreter: "/usr/bin/python3"
 thostip: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
 NODEJS_VERSION: 16
-mysql_root_password: "jaJj8Xueh0NZzT75"
-http_host: "test.org"
-http_conf: "test.org.conf"
+http_host: "example.com"
+http_conf: "example.com.conf"
 http_port: "80"
+dest_path: "/var/www"
 
+#      -=  if install mysql need! =-
+install_mysql: false
+mysql_root_password: "MySQLrootPassword"
+#      -=  if install mysql database need! =-
+create_db: false
+mysql_db_name: "exmysqldb"
+mysql_user: "mydbuser"
+mysql_pass: "mydbpass"
+
+#      -=  if install pgsql need! =-
+install_pgsql: true
+postgres_user: "postgres"
+postgres_pass: "pgUseRpassword"
+#      -=  if install pgsql database need! =-
+create_pg_db: true
+postgres_db_name: "pgdatabase"
+#      -=  END =-
